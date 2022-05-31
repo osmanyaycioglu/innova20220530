@@ -13,7 +13,7 @@ public class FileReadRun {
             List<String> stringList = Files.readAllLines(path);
             System.out.println(stringList);
             String str = "ahmet,ulas,70,160";
-            String[] split = str.split(",");
+            str.split(",");
         } catch (IOException e) {
             e.printStackTrace();
         }

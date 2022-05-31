@@ -12,6 +12,7 @@ public class ListRun {
         stringList.add("osman");
         stringList.add("mehmet");
         stringList.add("ali");
+        Collections.sort(stringList);
 
         String str = stringList.get(1);
 
