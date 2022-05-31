@@ -26,14 +26,17 @@ public class PropertyEngine {
                 if (propertyBind != null){
                     String prop = propertyBind.value();
                     String property = properties.getProperty(prop);
+
                     field.setAccessible(true);
                     if (String.class.getName().equals(field.getType().getName())){
+                        String str = (String) field.get(obj);
                         field.set(obj,property);
                     } else if (Integer.class.getName().equals(field.getType().getName())){
                         field.set(obj,Integer.parseInt(property));
                     } else if (Long.class.getName().equals(field.getType().getName())){
                         field.set(obj,Long.parseLong(property));
                     } else if ("int".equals(field.getType().getName())){
+                        int intVal = field.getInt(obj);
                         field.setInt(obj,Integer.parseInt(property));
                     } else if ("long".equals(field.getType().getName())){
                         field.setLong(obj,Long.parseLong(property));
