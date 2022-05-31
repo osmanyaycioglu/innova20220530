@@ -1,0 +1,4 @@
+osman,yay,100,200
+ali,veli,110,210
+mehmet,bal,80,180
+ahmet,ulas,70,160

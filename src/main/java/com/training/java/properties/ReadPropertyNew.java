@@ -6,11 +6,12 @@ import java.util.Properties;
 
 public class ReadPropertyNew {
     public static void main(String[] args) {
-        PropertyEngine propertyEngine = new PropertyEngine();
-        ApplicationConfig applicationConfig = (ApplicationConfig) propertyEngine.readProperty(new ApplicationConfig());
+        PropertyEngine<ApplicationConfig> propertyEngine = new PropertyEngine<>();
+        ApplicationConfig applicationConfig = propertyEngine.readProperty(new ApplicationConfig());
         System.out.println(applicationConfig);
 
-        XyzProperty xyzProperty = (XyzProperty) propertyEngine.readProperty(new XyzProperty());
+        PropertyEngine<XyzProperty> propertyEngine2 = new PropertyEngine<>();
+        XyzProperty xyzProperty = propertyEngine2.readProperty(new XyzProperty());
         System.out.println(xyzProperty);
     }
 

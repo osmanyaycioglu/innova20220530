@@ -5,9 +5,9 @@ import java.io.FileInputStream;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
-public class PropertyEngine {
+public class PropertyEngine<T> {
 
-    public Object readProperty(Object obj) {
+    public T readProperty(T obj) {
         Class<?> aClass = obj.getClass();
         PropertyFile propertyFile = aClass.getAnnotation(PropertyFile.class);
         if (propertyFile == null) {
