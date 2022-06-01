@@ -1,11 +1,13 @@
 package com.training.java.collections;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class SetRun {
     public static void main(String[] args) {
+        Set<String> stringSetThreadSafe = Collections.synchronizedSet(new HashSet<>());
         Set<String> stringSet = new TreeSet<>();
         stringSet.add("osman");
         stringSet.add("ali");

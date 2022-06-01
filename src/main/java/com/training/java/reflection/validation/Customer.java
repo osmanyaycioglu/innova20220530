@@ -1,22 +1,28 @@
 package com.training.java.reflection.validation;
 
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.TimeUnit;
 
-public class Customer {
+public class Customer implements Delayed {
 
     @ValidateStr(min = 2, max = 30)
-    private String        name;
+    private String name;
     @ValidateStr(min = 2, max = 50)
-    private String        surname;
+    private String surname;
     @ValidateStr(min = 8, max = 20)
-    private String        username;
+    private String username;
     @ValidateStr(min = 6, max = 15)
-    private String        password;
+    private String password;
     @ValidateList(max = Integer.MAX_VALUE)
     private List<Account> accountList;
-    private boolean       active;
+    private boolean active;
 
 
     public Customer() {
@@ -38,7 +44,7 @@ public class Customer {
         this.active = activeParam;
     }
 
-    public static Customer createCustomer(){
+    public static Customer createCustomer() {
         return new Customer();
     }
 
@@ -107,19 +113,48 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer [name="
-               + this.name
-               + ", surname="
-               + this.surname
-               + ", username="
-               + this.username
-               + ", password="
-               + this.password
-               + ", accountList="
-               + this.accountList
-               + ", active="
-               + this.active
-               + "]";
+                + this.name
+                + ", surname="
+                + this.surname
+                + ", username="
+                + this.username
+                + ", password="
+                + this.password
+                + ", accountList="
+                + this.accountList
+                + ", active="
+                + this.active
+                + "]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return active == customer.active && name.equals(customer.name) && surname.equals(customer.surname)
+                && username.equals(customer.username) && password.equals(customer.password)
+                && accountList.equals(customer.accountList);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name,
+                            surname,
+                            username,
+                            password,
+                            accountList,
+                            active);
+    }
+
+    @Override
+    public long getDelay(TimeUnit unit) {
+        return unit.convert(Duration.ofSeconds(1));
+
+    }
+
+    @Override
+    public int compareTo(Delayed o) {
+        return 0;
+    }
 }
